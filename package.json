@@ -1,0 +1,38 @@
+{
+  "name": "@sanjeevkumarrao/react-native-pos-printer",
+  "version": "1.0.0",
+  "description": "React Native module for ESC/POS thermal printers",
+  "keywords": [
+    "react-native",
+    "pos",
+    "printer",
+    "thermal",
+    "esc/pos",
+    "receipt",
+    "android",
+    "ios"
+  ],
+  "homepage": "https://sanjeevkumarrao.com",
+  "bugs": {
+    "url": "https://github.com/sanjeevkumarraob/react-native-pos-printer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjeevkumarraob/react-native-pos-printer.git"
+  },
+  "license": "MIT",
+  "author": "Sanjeev kumar Badrinath",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "types": "src/types.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.60.0"
+  }
+}
