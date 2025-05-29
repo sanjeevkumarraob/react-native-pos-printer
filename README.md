@@ -17,26 +17,24 @@ A React Native module for ESC/POS thermal printers supporting both iOS and Andro
 ## Installation
 
 ```bash
+# Using npm
 npm install react-native-pos-printer --save
-# or
+
+# Using yarn
 yarn add react-native-pos-printer
 ```
 
-### iOS Setup
+### iOS
 
-1. Add the following to your Podfile:
+This module supports auto-linking for React Native 0.60 and above.
 
-```ruby
-pod 'react-native-pos-printer', :path => '../node_modules/react-native-pos-printer'
-```
-
-2. Run pod install:
+1. Install the pods:
 
 ```bash
 cd ios && pod install
 ```
 
-3. Add the following to your Info.plist:
+2. Add the following to your Info.plist:
 
 ```xml
 <key>UISupportedExternalAccessoryProtocols</key>
@@ -45,44 +43,18 @@ cd ios && pod install
 </array>
 ```
 
-4. Add the ExternalAccessory framework to your project.
+3. For Bluetooth functionality, add the following to your Info.plist:
 
-### Android Setup
-
-1. Add the following to your `android/settings.gradle`:
-
-```gradle
-include ':react-native-pos-printer'
-project(':react-native-pos-printer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pos-printer/android')
+```xml
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>This app uses Bluetooth to connect to thermal printers</string>
 ```
 
-2. Add the following to your `android/app/build.gradle`:
+### Android
 
-```gradle
-dependencies {
-    // ...
-    implementation project(':react-native-pos-printer')
-}
-```
+This module supports auto-linking for React Native 0.60 and above.
 
-3. Add the following to your `MainApplication.java`:
-
-```java
-import com.reactnativeposprinter.PosPrinterPackage;
-
-// ...
-
-@Override
-protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        // ...
-        new PosPrinterPackage()
-    );
-}
-```
-
-4. Add the following permissions to your `AndroidManifest.xml`:
+1. Add the following permissions to your `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -91,6 +63,28 @@ protected List<ReactPackage> getPackages() {
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-feature android:name="android.hardware.usb.host" />
+```
+
+2. For Android 6.0+ (API level 23+), you'll need to request runtime permissions for Bluetooth and Location:
+
+```javascript
+import { PermissionsAndroid } from 'react-native';
+
+const requestBluetoothPermissions = async () => {
+  try {
+    const granted = await PermissionsAndroid.requestMultiple([
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+      PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+    ]);
+    return Object.values(granted).every(
+      val => val === PermissionsAndroid.RESULTS.GRANTED
+    );
+  } catch (err) {
+    console.warn(err);
+    return false;
+  }
+};
 ```
 
 ## Usage
@@ -355,6 +349,10 @@ const openCashDrawer = async () => {
 - `PrinterEvents.addPrinterConnectionListener(callback)` - Add printer connection listener
 - `PrinterEvents.removePrinterStatusListener(listenerId)` - Remove printer status listener
 - `PrinterEvents.removePrinterConnectionListener(listenerId)` - Remove printer connection listener
+
+## Troubleshooting
+
+If you encounter any issues, please refer to the [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) file.
 
 ## License
 
