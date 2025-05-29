@@ -13,10 +13,10 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "11.0" }
   s.source       = { :git => package["repository"]["url"], :tag => "#{s.version}" }
 
-  s.source_files = "*.{h,m}"
+  s.source_files = "ios/*.{h,m}"
   
   # Include Epson SDK framework
-  s.vendored_frameworks = 'Frameworks/libepos2.xcframework'
+  s.vendored_frameworks = 'ios/Frameworks/libepos2.xcframework'
   
   # Required frameworks for Epson SDK
   s.frameworks = 'ExternalAccessory'
@@ -27,5 +27,9 @@ Pod::Spec.new do |s|
   # Build settings
   s.pod_target_xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_TARGET_SRCROOT)/Frameworks/libepos2.xcframework/Headers' }
 
-  s.dependency "React-Core"
+  if respond_to?(:install_modules_dependencies, true)
+    install_modules_dependencies(s)
+  else
+    s.dependency "React-Core"
+  end
 end
