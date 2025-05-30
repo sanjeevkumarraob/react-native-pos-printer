@@ -26,7 +26,7 @@ yarn add react-native-pos-printer
 
 ### iOS
 
-This module supports auto-linking for React Native 0.60 and above.
+This module supports auto-linking for React Native 0.60 and above. All required SDK files are included in the package.
 
 1. Install the pods:
 
@@ -52,7 +52,7 @@ cd ios && pod install
 
 ### Android
 
-This module supports auto-linking for React Native 0.60 and above.
+This module supports auto-linking for React Native 0.60 and above. All required SDK files are included in the package.
 
 1. Add the following permissions to your `AndroidManifest.xml`:
 
