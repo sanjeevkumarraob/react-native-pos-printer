@@ -1,6 +1,6 @@
 {
   "name": "@sanjeevkumarrao/react-native-pos-printer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React Native module for ESC/POS thermal printers",
   "keywords": [
     "react-native",
